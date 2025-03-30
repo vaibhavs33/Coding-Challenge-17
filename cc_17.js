@@ -70,3 +70,34 @@ sRep.addClient(cust1); //Assigning first customer
 sRep.getClientTotal("Hank Ford"); //Checking the total spent for Hank
 sRep.addClient(cust2); //Assigning second customer
 sRep.getClientTotal("David Warner"); //Checking the total spent for David
+
+//Task 3 - Extended VIPCustomer Class
+//This class is for VIP customers who earn a 10% bonus on their total
+class VIPCustomer extends Customer {
+    constructor(name, email, vipLevel) {
+        //Calling the constructor of the parent class (Customer) to set the name and email
+        super(name, email);
+        
+        //Sets the VIP level ('Gold' or 'Platinum')
+        this.vipLevel = vipLevel;
+    }
+
+    //VIPs get a 10% bonus added to their total spent
+    getTotalSpent() {
+        const initialTotal = super.getTotalSpent();
+        return initialTotal * 1.1;
+    }
+}
+
+//Test case for Task 3 - Creating VIP customers with different VIP levels and purchases
+let vipCust1 = new VIPCustomer("Freddy Stokes", "fstokes78@yahoo.com", "Gold");
+vipCust1.addPurchase(630);
+console.log(`VIP Customer ${vipCust1.name} - Total with Bonus: $${vipCust1.getTotalSpent().toFixed(0)}`);
+
+let vipCust2 = new VIPCustomer("Eugene Simmons", "esimmons54@gmail.com", "Platinum");
+vipCust2.addPurchase(890);
+console.log(`VIP Customer ${vipCust2.name} - Total with Bonus: $${vipCust2.getTotalSpent().toFixed(0)}`);;
+
+let vipCust3 = new VIPCustomer("Celia Hill", "chill95@yahoo.com", "Gold");
+vipCust3.addPurchase(1060);
+console.log(`VIP Customer ${vipCust3.name} - Total with Bonus: $${vipCust3.getTotalSpent().toFixed(0)}`);
