@@ -101,3 +101,30 @@ console.log(`VIP Customer ${vipCust2.name} - Total with Bonus: $${vipCust2.getTo
 let vipCust3 = new VIPCustomer("Celia Hill", "chill95@yahoo.com", "Gold");
 vipCust3.addPurchase(1060);
 console.log(`VIP Customer ${vipCust3.name} - Total with Bonus: $${vipCust3.getTotalSpent().toFixed(0)}`);
+
+//Task 4 - Finalized Reporting System
+
+//Reporting system that calculates total revenue and high spenders
+
+//Adding VIP customers to the sales rep's client list
+sRep.addClient(vipCust1);
+sRep.addClient(vipCust2);
+sRep.addClient(vipCust3);
+
+//Combines all regular and VIP customers into one list
+const allCustomers = [cust1, cust2, vipCust1, vipCust2, vipCust3];
+
+//Calculates total revenue from all customers
+const totalRevenue = allCustomers.reduce((sum, customer) => sum + customer.getTotalSpent(), 0);
+console.log("Total Revenue:", totalRevenue);
+
+//Filters and lists all customers who spent more than $500
+const highSpendingCustomers = allCustomers.filter(customer => customer.getTotalSpent() > 500);
+console.log("High spending customers:", highSpendingCustomers.map(c=> c.name));
+
+//Creates a summary with each customer's name and total spent (rounded)
+const customerSummary = allCustomers.map(c => (
+    {name: c.name, totalSpent: Math.round(c.getTotalSpent()) }
+));
+
+console.log("Customer Summary:", customerSummary);
